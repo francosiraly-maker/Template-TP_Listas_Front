@@ -83,7 +83,7 @@ let comidas =  [
   ]
 
 
-
+const formComidaNueva=document.getElementById("Agregar comida")
 function mostrarComidas (){
   for(let i=0; i <comidas.length; i++){
   constcontainer = document.getElementById('comidaContainer').innerHTML += 
@@ -118,3 +118,10 @@ comidas.forEach(comida => {
 }
 
 mostrarComidasConForEach()
+
+
+formComidaNueva. addEventListener ("submit", ()=>{
+
+alert("Comida nueva recibida") 
+
+})
