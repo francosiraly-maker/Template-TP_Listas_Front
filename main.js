@@ -5,16 +5,16 @@ fetch('./data/comidas.json')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
     console.log('Comidas cargadas desde JSON:');
-    console.log(data);    
+    //console.log(data);    
     comidas = data;                   // Asignar el JSON a la variable comidas
-    mostrarComidas (comidas);
+    //mostrarComidas (comidas);
     })
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
     console.error('Error al leer el archivo JSON:', error);
   });
 
 
-const container = document.getElementById('comidaContainer').innerHTML = 
+//const container = document.getElementById('comidaContainer').innerHTML = comidaContainer;
 
 
 
@@ -84,15 +84,37 @@ let comidas =  [
 
 
 
-
+function mostrarComidas (){
   for(let i=0; i <comidas.length; i++){
-  const container = document.getElementById('comidaContainer').innerHTML = 
+  constcontainer = document.getElementById('comidaContainer').innerHTML += 
 `
 <article class= "card">
-<h2 class="comidas" >$(comida.nombre)</h2>
+<h2>${comidas[i].nombre }</h2>
 <p>${comidas[i].categoria }</p>
 <p>${comidas[i].provincia }</p>
 <p>ingredientes:${comidas[i].ingredientes }</p>
 </article>
 `
+}}
+
+function mostrarComidasConForEach (){
+comidas.forEach(comida => {
+
+  comidaContainer.innerHTML += 
+
+`
+<article class= "card">
+<h2>${comida.nombre }</h2>
+<p>${comida.categoria }</p>
+<p>${comida.provincia }</p>
+<p>ingredientes:${comida.ingredientes }</p>
+</article>
+`
+
+
+} )
+
+
 }
+
+mostrarComidasConForEach()
