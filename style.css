@@ -11,8 +11,8 @@ body {
 }
 
 .card {
-  background-color: white;
-  border: 2px solid #000;
+  background-color: rgb(211, 204, 204);
+  border: 2px solid #2e31eb;
   padding: 15px;
   width: 250px;
  
