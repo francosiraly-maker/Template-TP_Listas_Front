@@ -1,4 +1,4 @@
-fetch('./data/comidas.json')          // Ruta al archivo JSON
+fetch('./data/comidasjson')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
     console.log('Comidas cargadas desde JSON:');
@@ -79,9 +79,9 @@ let comidas = [
 
 const formComidaNueva = document.getElementById("agregarComidaForm")
 
-function mostrarComidas() {
+function mostrarComidas(lista) {
   comidaContainer.innerHTML = "";
-  for (let i = 0; i < comidas.length; i++) {
+  lista.forEach (comida=>
     comidaContainer.innerHTML += `
       <article class="card">
         <h2>${comidas[i].nombre}</h2>
@@ -89,9 +89,9 @@ function mostrarComidas() {
         <p>Provincia: ${comidas[i].provincia}</p>
         <p>Ingredientes: ${comidas[i].ingredientes}</p>
       </article>
-    `;
-  }
-}
+    `
+ ) }
+
 
 function mostrarComidasConForEach() {
   comidaContainer.innerHTML = ""; // Limpia el contenedor antes de dibujar para no duplicar tarjetas
@@ -102,6 +102,10 @@ function mostrarComidasConForEach() {
         <p>Categoría: ${comida.categoria}</p>
         <p>Provincia: ${comida.provincia}</p>
         <p>Ingredientes: ${comida.ingredientes}</p>
+        <ul>
+        ${comida.ingredientes.map( ingredientes=> ´<li>$(ingredientes</li>).join (``) }
+        </ul>
+        
       </article>
     `;
   });
@@ -125,6 +129,33 @@ agregarComidaForm.addEventListener("submit", (event) => {
   }
 
   comidas.push(nuevaComida)
-  mostrarComidasConForEach()
+  mostrarComidasConForEach()`
+  }
+
+const buscador= document.getElementById("buscador")
+const filroCategoria = document.getElementById ("filtrarCategoria")
+const filroProvincia = document.getElementById ("filtrarProvincia")
+
+function filtrar (){
+const comidasFiltradas= comidas.filter(comida =>{
+  return comida.categoria.includes(filtroCategoria.value)
+    &&  comida.categoria.includes(filtroCategoria.value)
+})
+  mostrarComidas(comidasFiltradas)
+}
+
+function buscar (){
+const texto= buscador.value.toLowerCase()
+
+const comidasFiltradas = comidas.filter(comida =>{
+return comida.nombre. toLowerCase(). includes(texto)
+|| comida.provincia.toLowerCase().includes (texto)
+|| comida.categoria.toLowerCase().includes (texto)
+
+})
+
+filroCategoria.addEventListener ("change", filtrar)
+filroProvincia.addEventListener ("change", filtrar)
+buscador.addEventListener ("input", buscar)
 
 })
